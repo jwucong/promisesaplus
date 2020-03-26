@@ -72,7 +72,7 @@ promise.then(onFulfilled, onRejected)
    2. 该函数不能在 promise 被拒绝前调用。
    3. 该函数不能被多次调用。
    
-4. onFulfilled 或 onRejected 只有在执行上下文堆栈仅包含平台代码时才能被调用。[[3.1](#3.-注释)]
+4. onFulfilled 或 onRejected 只有在执行上下文堆栈仅包含平台代码时才能被调用。[[3.1](#notes1)]
 
 5. onFulfilled 和 onRejected 必须被作为函数调用(即没有 this 值)。[[3.2](#3.-注释)]
 
@@ -144,7 +144,7 @@ promise.then(onFulfilled, onRejected)
 
 ## 3. 注释
 
-1. 这里的平台代码指的是引擎、环境以及 promise 的具体实现代码。
+1. <span id="notes1"></span>这里的平台代码指的是引擎、环境以及 promise 的具体实现代码。
 在实践中要确保 onFulfilled 和 onRejected 方法异步执行，且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。
 这个事件队列可以采用类似 setTimeout 或 setImmediate 的"宏任务"机制
 或者类似 MutationObserver 或 process.nextTick 的"微任务"机制来实现。
