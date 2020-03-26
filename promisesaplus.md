@@ -74,14 +74,14 @@ promise.then(onFulfilled, onRejected)
    
 4. onFulfilled 或 onRejected 只有在执行上下文堆栈仅包含平台代码时才能被调用。[[3.1](#notes1)]
 
-5. onFulfilled 和 onRejected 必须被作为函数调用(即没有 this 值)。[[3.2](#3.-注释)]
+5. onFulfilled 和 onRejected 必须被作为函数调用(即没有 this 值)。[[3.2](#notes2)]
 
 6. then 方法可以被同一个 promise 多次调用。
 
    1. 当 promise 完成时，所有的 onFulfilled 回调都必须按照其原有的顺序执行。
    2. 当 promise 被拒绝时，所有的 onRejected 回调都必须按照其原有的顺序执行。
    
-7. then 方法必须返回一个 promise [[3.3](#3.-注释)]
+7. then 方法必须返回一个 promise [[3.3](#notes3)]
 
    ```javascript
    promise2 = promise1.then(onFulfilled, onRejected);
@@ -112,7 +112,7 @@ promise.then(onFulfilled, onRejected)
 
 1. 如果 promise 和 x 指向同一对象, 则以 TypeError 作为拒绝的原因使 promise 进入已拒绝状态。
 
-2. 如果 x 是一个 promise，则使 promise 接受 x 的状态: [[3.4](#3.-注释)]
+2. 如果 x 是一个 promise，则使 promise 接受 x 的状态: [[3.4](#notes4)]
 
    1. 如果 x 的状态处于等待中，则 promise 的状态也必须处于等待中，直到 x 的状态变为已完成或已拒绝。
    2. 如果 x 的状态为已完成，则使用相同的值使得 promise 进入已完成状态。
@@ -120,7 +120,7 @@ promise.then(onFulfilled, onRejected)
 
 3. 否则， 如果 x 是一个对象或者函数: 
 
-   1. 定义一个临时变量 then = x.then [[3.5](#3.-注释)]
+   1. 定义一个临时变量 then = x.then [[3.5](#notes5)]
    2. 如果读取属性 x.then 时抛出了一个异常 e, 则以 e 作为拒绝的原因使 promise 进入已拒绝状态。
    3. 如果 then 是一个函数，则以 x 作为该函数执行上下文的 this 去调用该函数，并传入两个回调函数作为参数，
    第一个参数叫做 resolvePromise， 第二个参数叫做 rejectPromise
@@ -139,7 +139,7 @@ promise.then(onFulfilled, onRejected)
       
 如果一个 promise 被一个循环的 thenable 链中的对象置为已完成状态，
 而 \[\[Resolve\]\]\(promise, thenable\) 的递归性质又使得其被再次调用，上述的算法将会陷入无限递归之中。
-算法虽不强制要求，但鼓励实现者检测这样的递归是否存在，若检测到存在则以一个可识别的 TypeError 作为原因来把 promise 置为已拒绝状态。[[3.6](#3.-注释)]
+算法虽不强制要求，但鼓励实现者检测这样的递归是否存在，若检测到存在则以一个可识别的 TypeError 作为原因来把 promise 置为已拒绝状态。[[3.6](#notes6)]
 
 
 ## 3. 注释
@@ -150,14 +150,14 @@ promise.then(onFulfilled, onRejected)
 或者类似 MutationObserver 或 process.nextTick 的"微任务"机制来实现。
 由于 promise 的具体实现代码本身就是平台代码，所以代码自身在处理任务时很可能已经包含了一个任务调度队列。
 
-2. 意思是：在严格模式中，函数执行上下文的 this 的值为 undefined, 在非严格模式中其为全局对象。
+2. <span id="notes2"></span>意思是：在严格模式中，函数执行上下文的 this 的值为 undefined, 在非严格模式中其为全局对象。
 
-3. 具体实现在满足所有要求的情况下可以允许 promise2 === promise1 。
+3. <span id="notes3"></span>具体实现在满足所有要求的情况下可以允许 promise2 === promise1 。
 但要求每个实现都要有文档说明其是否允许以及在何种条件下允许 promise2 === promise1。
 
-4. 通常情况下，如果 x 符合当前实现，我们才认为它是真正的 promise。这一规则允许那些特例实现接受符合已知要求的 promises 状态。
+4. <span id="notes4"></span>通常情况下，如果 x 符合当前实现，我们才认为它是真正的 promise。这一规则允许那些特例实现接受符合已知要求的 promises 状态。
 
-5. 这里我们先是存储了一个指向 x.then 的引用，然后测试并调用该引用，以避免多次访问 x.then 属性。这种预防措施确保了该属性的一致性，因为其值可能在读取时被改变。
+5. <span id="notes5"></span>这里我们先是存储了一个指向 x.then 的引用，然后测试并调用该引用，以避免多次访问 x.then 属性。这种预防措施确保了该属性的一致性，因为其值可能在读取时被改变。
 
-6. 具体实现不应该对 thenable 链的深度进行任何的限制，假设因此导致了无限递归，只有真正的循环递归才应该导致 TypeError 异常；
+6. <span id="notes6"></span>具体实现不应该对 thenable 链的深度进行任何的限制，假设因此导致了无限递归，只有真正的循环递归才应该导致 TypeError 异常；
 如果一条无限长的 thenable 链上的每个 thenable 都不相同，那么永远递归下去也是正确的。
