@@ -270,7 +270,9 @@ git rebase [options] <branchName>
 ```
 
 <details>
+   
 <summary>图示</summary>
+
 
 rebase从字面意思上看就是再次base，既然是再次，说明在此之前，它曾经base过；
 怎么理解，看图：
@@ -312,8 +314,11 @@ A --- B --- C --- H --- I --- J      (dev)
 
 </details>
 
+
 <details>
+   
 <summary>merge与rebase的区别</summary>
+
 
 假设: 项目组规定，dev分支作为公共的开发分支，各个开发人员在dev的基础上切出自己的开发分支，
 当自己负责的功能完成后再合入公共的dev分支。
