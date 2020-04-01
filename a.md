@@ -2,7 +2,7 @@
 # git
 > [官方文档](https://git-scm.com/docs)
 
-1. [基本概念](#0.-git-基本概念)
+1. [基本概念](#0.-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5)
 2. [项目创建](#1.-项目创建)
 
    - [git init](#git-init)
