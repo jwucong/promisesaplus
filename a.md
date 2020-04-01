@@ -2,46 +2,34 @@
 # git
 > [官方文档](https://git-scm.com/docs)
 
-1. [基本概念](#0.-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5)
-2. [项目创建](#1.-项目创建)
+**命令列表:**
 
-   - [git init](#git-init)
-   - [git clone](#git-clone)
-   
-3. [文件操作](#2.-文件操作(建立git快照))
+- [git init](#git-init)
+- [git clone](#git-clone)
+- [git add](#git-add)
+- [git mv](#git-mv)
+- [git rm](#git-rm)
+- [git checkout](#git-checkout)
+- [git commit](#git-commit)
+- [git reset](#git-reset)
+- [git revert](#git-revert)
+- [git branch](#git-branch)
+- [git tag](#git-tag)
+- [git merge](#git-merge)
+- [git rebase](#git-rebase)
+- [git cherry-pick](#git-cherry-pick)
+- [git stash](#git-stash)
+- [git remote](#git-remote)
+- [git fetch](#git-fetch)
+- [git pull](#git-pull)
+- [git push](#git-push)
+- [git status](#git-status)
+- [git log](#git-log)
+- [git reflog](#git-reflog)
+- [git show](#git-show)
 
-   - [git add](#git-add)
-   - [git mv](#git-mv)
-   - [git rm](#git-rm)
-   - [git checkout](#git-checkout)
-   - [git commit](#git-commit)
-   - [git reset](#git-reset)
-   - [git revert](#git-revert)
 
-4. [分支、标签管理](#3.-分支、标签管理)
-
-   - [git branch](#git-branch)
-   - [git tag](#git-tag)
-   - [git merge](#git-merge)
-   - [git rebase](#git-rebase)
-   - [git cherry-pick](#git-cherry-pick)
-   - [git stash](#git-stash)
-   
-5. [拉取和推送](#4.-本地与远端的同步(拉取和推送))
-
-   - [git remote](#git-remote)
-   - [git fetch](#git-fetch)
-   - [git pull](#git-pull)
-   - [git push](#git-push)
-   
-5. [查看](#5.-查看)
-
-   - [git status](#git-status)
-   - [git log](#git-log)
-   - [git reflog](#git-reflog)
-   - [git show](#git-show)
-   
-### 0. git 基本概念
+### 0. 基本概念
 > 图片来源: [阮一峰的网络日志 - 常用 Git 命令清单](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
 ![git概念图](git.png)
